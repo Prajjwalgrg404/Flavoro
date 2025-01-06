@@ -1,17 +1,23 @@
-import Home from "./Pages/Home";
-import {Routes,Route} from 'react-router-dom'
-import Success from "./Pages/success";
-import Error from "./Pages/Error";
+import React, { lazy, Suspense } from "react";
+import Navbar from "./Components/Navbar";
+import Menu from "./Components/Menu";
+
+const Fooditems = lazy(() => import("./Components/Fooditems"));
 
 function App() {
- 
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/*" element={<Error />} />
-      </Routes>
+      <Navbar />
+      <Menu />
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center">
+            <h1 className="text-[5rem] font-semibold">Loading...</h1>
+          </div>
+        }
+      >
+        <Fooditems />
+      </Suspense>
     </div>
   );
 }
