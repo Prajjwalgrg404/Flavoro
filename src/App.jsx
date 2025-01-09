@@ -2,22 +2,30 @@ import React, { lazy, Suspense } from "react";
 import Navbar from "./Components/Navbar";
 import Menu from "./Components/Menu";
 
-const Fooditems = lazy(() => import("./Components/Fooditems"));
+import { Link, Route, Routes } from "react-router-dom";
+import Lunch from "./Filtered_component/Lunch";
+import Fooditems from "./Components/Fooditems";
+import Breakfast from "./Filtered_component/Breakfast";
+import Dinner from "./Filtered_component/Dinner";
+import Snacks from "./Filtered_component/Snacks";
+
+
 
 function App() {
   return (
     <div>
       <Navbar />
       <Menu />
-      <Suspense
-        fallback={
-          <div className="flex justify-center items-center">
-            <h1 className="text-[5rem] font-semibold">Loading...</h1>
-          </div>
-        }
-      >
-        <Fooditems />
-      </Suspense>
+      {/* <Fooditems /> */}
+      <div>
+          <Routes>
+            <Route path="/" element={<Fooditems />} />
+            <Route path="/lunch" element={<Lunch />} />
+            <Route path="/breakfast" element={<Breakfast />} />
+            <Route path="/dinner" element={<Dinner />} />
+            <Route path="/snacks" element={<Snacks />} />
+          </Routes>
+      </div>
     </div>
   );
 }

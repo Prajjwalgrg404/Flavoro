@@ -1,14 +1,12 @@
-import React from 'react'
-import Foodcards from './Foodcards'
+import React from "react";
+import Foodcards from "./Foodcards";
 
 function Fooditems() {
   return (
-    <div>
-        <div className='w-[90vw] mx-auto  my-4'>
-            <Foodcards/>
-        </div>
+    <div className="w-[90vw] mx-auto  my-4">
+      <Foodcards />
     </div>
-  )
+  );
 }
 
-export default Fooditems
+export default Fooditems;

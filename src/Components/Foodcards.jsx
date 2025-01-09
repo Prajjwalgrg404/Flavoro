@@ -1,10 +1,14 @@
 import React from "react";
 import FoodData from "../FoodData/FoodData";
 import { FaStar } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addItem } from "../Redux/Slice/Slice";
+
 function Foodcards() {
+  const dispatch = useDispatch();
+
   return (
     <div className="flex gap-[2rem] mx-10 px-12 flex-wrap ">
-     
       {FoodData.map((items, id) => {
         return (
           <div
@@ -31,7 +35,18 @@ function Foodcards() {
                   <FaStar />
                   <h3 className="font-semibold">{items.rating}</h3>
                 </div>
-                <button className="px-4 py-1 bg-green-500 hover:bg-green-600 hover:text-white rounded-lg text-sm">
+                <button
+                  onClick={() => {
+                    dispatch(
+                      addItem({
+                        Name: items.name,
+                        Price: items.price,
+                        Image: items.img,
+                      })
+                    );
+                  }}
+                  className="px-4 py-1 bg-green-500 hover:bg-green-600 hover:text-white rounded-lg text-sm"
+                >
                   Add to Cart
                 </button>
               </div>
@@ -39,7 +54,6 @@ function Foodcards() {
           </div>
         );
       })}
-      
     </div>
   );
 }
