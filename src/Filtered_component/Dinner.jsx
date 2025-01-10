@@ -3,6 +3,7 @@ import FoodData from "../FoodData/FoodData";
 import { FaStar } from "react-icons/fa";
 import { addItem } from "../Redux/Slice/Slice";
 import { useDispatch } from "react-redux";
+import Side_Cart from "../Components/Side_Cart";
 
 function Dinner() {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ function Dinner() {
   const FilteredData = data.filter((items) => {
     return items.category === "Dinner";
   });
+
+  // setdata()
   return (
     <div className="w-[90%] mx-auto ">
       <div className="flex gap-[2rem] mx-10 px-12 flex-wrap ">
@@ -61,6 +64,7 @@ function Dinner() {
           );
         })}
       </div>
+      <Side_Cart />
     </div>
   );
 }

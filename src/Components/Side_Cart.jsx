@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../Redux/Slice/Slice";
+import { Link } from "react-router-dom";
+
 
 function Side_Cart() {
   const [Toggle, setToggle] = useState(false);
@@ -17,13 +19,14 @@ function Side_Cart() {
 
   return (
     <>
-      <div>
+      <div className="fixed top-[40rem] z-10 right-10">
         {/* cart section */}
         <h2
           onClick={open}
-          className="px-6 py-2 rounded-xl bg-green-500 hover:bg-green-600 hover:text-white cursor-pointer"
+          className="px-4 py-2 rounded-xl bg-green-500 hover:bg-green-600 hover:text-white cursor-pointer"
         >
-          Cart <span className="text-white">{maincart.length}</span>
+          <i className="fa-solid fa-cart-shopping"></i>{" "}
+          <span className="text-white">{maincart.length}</span>
         </h2>
         <div
           className={`w-[20rem] h-screen  overflow-y-scroll bg-white fixed top-0 ${
@@ -40,52 +43,70 @@ function Side_Cart() {
             </div>
 
             <div className="px-3 mb-[8rem]">
-              {maincart.map((items, id) => {
-                return (
-                  <div
-                    key={id}
-                    className="w-full h-[5rem] shadow-xl border rounded-lg mt-4 px-4 py-2 flex"
-                  >
-                    <div>
-                      <img
-                        src={items.Image}
-                        alt="Image"
-                        className="object-fill w-[6rem] h-full "
-                      />
-                    </div>
-                    <div className="w-full flex flex-col px-2">
-                      <div className="w-full flex justify-between">
-                        <h2>{items.Name.slice(0, 16)}</h2>
-                        <i
-                          onClick={() => {
-                            dispatch(removeItem(id)); // Pass the id inside an object
-                          }}
-                          className="fa-solid fa-trash"
-                        ></i>
+              {maincart.length > 0 ? (
+                maincart.map((items, id) => {
+                  return (
+                    <div
+                      key={id}
+                      className="w-full h-[5rem] shadow-xl border rounded-lg mt-4 px-4 py-2 flex"
+                    >
+                      <div>
+                        <img
+                          src={items.Image}
+                          alt="Image"
+                          className="object-fill w-[6rem] h-full "
+                        />
                       </div>
-                      <div className="w-full h-full flex justify-between items-center">
-                        <h2 className="text-green-500">₹ {items.Price}</h2>
-                        <div>
-                          <i className="fa-solid fa-minus border p-1 rounded"></i>
-                          1
-                          <i className="fa-solid fa-plus border p-1 rounded"></i>
+                      <div className="w-full flex flex-col px-2">
+                        <div className="w-full flex justify-between">
+                          <h2>{items.Name.slice(0, 16)}</h2>
+                          <i
+                            onClick={() => {
+                              dispatch(removeItem(id)); // Pass the id inside an object
+                            }}
+                            className="fa-solid fa-trash"
+                          ></i>
+                        </div>
+                        <div className="w-full h-full flex justify-between items-center">
+                          <h2 className="text-green-500">₹ {items.Price}</h2>
+                          <div>
+                            <i className="fa-solid fa-minus border p-1 rounded"></i>
+                            1
+                            <i className="fa-solid fa-plus border p-1 rounded"></i>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            <div className={`font-semibold bg-white ${Toggle === true ? "": "hidden"} fixed bottom-0 right-4 py-5 px-1`}>
-              <h2>Items: {maincart.length}</h2>
-              <h2>Total Amount: ₹{totalamt}</h2>
-              <button className="bg-green-500 hover:bg-green-600 hover:text-white rounded-xl mx-6 px-20 py-2 ">
-                Check Out
-              </button>
-            </div>
+                  );
+                })
+              ) : (
+                <h2 className="text-center font-semibold text-lg mt-[15rem]">
+                  No Items !!
+                </h2>
+              )}
+              <div
+                className={`font-semibold bg-white ${
+                  Toggle === true ? "" : "hidden"
+                } fixed bottom-0 right-4 py-5 px-1`}
+              >
+                <h2>Items: {maincart.length}</h2>
+                <h2>Total Amount: ₹{totalamt}</h2>
+                <Link to="/checkout"><button className="bg-green-500 hover:bg-green-600 hover:text-white rounded-xl mx-6 px-20 py-2 ">
+                  Check Out
+                </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div
+        onClick={open}
+        className={`w-full h-screen fixed top-0 left-0 ${
+          Toggle === true ? "bg-[rgba(0,0,0,.3)]" : "hidden"
+        }`}
+      ></div>
     </>
   );
 }

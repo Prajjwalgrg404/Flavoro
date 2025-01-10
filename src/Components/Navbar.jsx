@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Side_Cart from "./Side_Cart";
+// import Side_Cart from "./Side_Cart";
 
 
 function Navbar() {
@@ -18,7 +18,7 @@ function Navbar() {
             type="search"
             placeholder="Search..."
           />
-        <Side_Cart />
+        
         </div>
       </div>
     </nav>

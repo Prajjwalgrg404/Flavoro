@@ -3,6 +3,7 @@ import FoodData from "../FoodData/FoodData";
 import { FaStar } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addItem } from "../Redux/Slice/Slice";
+import Side_Cart from "./Side_Cart";
 
 function Foodcards() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function Foodcards() {
           </div>
         );
       })}
+      <Side_Cart />
     </div>
   );
 }

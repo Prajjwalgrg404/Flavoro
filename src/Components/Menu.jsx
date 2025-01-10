@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 function Menu() {
   const [change, setchange] = useState(0);
   //  setopen(open)
-  console.log(open);
+  // console.log(open);
 
   const button_css = "px-4 py-2 border-2 border-zinc-300 hover:bg-green-500 hover:text-white rounded-lg";
-  const button_change ="px-4 py-2 border border-zinc-300 bg-green-600 text-white rounded-lg"
+  const button_change ="px-4 py-2 border border-zinc-300 bg-green-500 text-white rounded-lg"
   return (
     <>
       <div className="mx-5 my-8">
